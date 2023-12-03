@@ -12,4 +12,25 @@ export class TarefaService {
     });
     return atividade;
   }
+
+  async readAll() {
+    return this.prisma.tarefa.findMany();
+  }
+
+  async update(id: string, data: TarefaDTO) {
+    return await this.prisma.tarefa.update({
+      data,
+      where: {
+        id,
+      },
+    });
+  }
+
+  async delete(id) {
+    return await this.prisma.tarefa.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }
