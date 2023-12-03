@@ -11,10 +11,16 @@ datasource db {
 }
 
 model tarefa {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   titulo String
-  tag String
-  realizado Boolean
-
+  tag tags @relation(fields: [tagId], references: [id])
+  tagId Int
+  realizado Boolean @default(false)
+  
   @@map("tarefas")
+}
+
+model tags {
+  id Int @id @default(autoincrement())
+  tarefas tarefa[]
 }
