@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 export type TarefaDTO = {
   titulo: string;
-  tag: string;
+  tag: any;
   realizado: boolean;
 };

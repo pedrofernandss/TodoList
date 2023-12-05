@@ -16,11 +16,16 @@ model tarefa {
   tag tags @relation(fields: [tagId], references: [id])
   tagId Int
   realizado Boolean @default(false)
-  
+  criadoEm DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
   @@map("tarefas")
 }
 
 model tags {
   id Int @id @default(autoincrement())
+  nomeTag String
+  criadoEm DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
   tarefas tarefa[]
 }

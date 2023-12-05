@@ -18,12 +18,12 @@ export class TarefaController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() data: TarefaDTO) {
+  async update(@Param('id') id: number, @Body() data: TarefaDTO) {
     return this.tarefaService.update(id, data);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id') id: number) {
     return this.tarefaService.delete(id);
   }
 }

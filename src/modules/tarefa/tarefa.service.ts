@@ -17,7 +17,7 @@ export class TarefaService {
     return this.prisma.tarefa.findMany();
   }
 
-  async update(id: string, data: TarefaDTO) {
+  async update(id: number, data: TarefaDTO) {
     return await this.prisma.tarefa.update({
       data,
       where: {
