@@ -13,8 +13,8 @@ datasource db {
 model tarefa {
   id Int @id @default(autoincrement())
   titulo String
-  tag tags @relation(fields: [tagId], references: [id])
-  tagId Int
+  tag tags? @relation(fields: [tagId], references: [id])
+  tagId Int?
   realizado Boolean @default(false)
   criadoEm DateTime @default(now())
   atualizadoEm DateTime @updatedAt

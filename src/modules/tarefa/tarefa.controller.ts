@@ -1,7 +1,7 @@
 // eslint-disable-next-line prettier/prettier
-import { Body, Controller, Get, Post, Put, Param, Delete } from '@nestjs/common';
-import { TarefaService } from './tarefa.service';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { TarefaDTO } from './tarefa.dto';
+import { TarefaService } from './tarefa.service';
 
 @Controller('tarefa')
 export class TarefaController {
@@ -18,12 +18,14 @@ export class TarefaController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() data: TarefaDTO) {
-    return this.tarefaService.update(id, data);
+  async update(@Param('id') id: string, @Body() data: TarefaDTO) {
+    const tarefaId = parseInt(id, 10);
+    return this.tarefaService.update(tarefaId, data);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number) {
-    return this.tarefaService.delete(id);
+  async delete(@Param('id') id: string) {
+    const tarefaId = parseInt(id, 10);
+    return this.tarefaService.delete(tarefaId);
   }
 }
