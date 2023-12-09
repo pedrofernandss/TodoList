@@ -17,6 +17,12 @@ export class TagController {
     return this.tagService.readAll();
   }
 
+  @Get(':id')
+  async readAllTag(@Param('id') id: string) {
+    const tagId = parseInt(id, 10);
+    return this.tagService.readAllTag(tagId);
+  }
+
   @Put(':id')
   async update(@Param('id') id: string, @Body() data: TagDTO) {
     const tagId = parseInt(id, 10);

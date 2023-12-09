@@ -24,7 +24,7 @@ model tarefa {
 
 model tags {
   id Int @id @default(autoincrement())
-  nomeTag String
+  nomeTag String @unique
   criadoEm DateTime @default(now())
   atualizadoEm DateTime @updatedAt
   tarefas tarefa[]

@@ -17,6 +17,12 @@ export class TagService {
     return this.prisma.tags.findMany();
   }
 
+  async readAllTag(id: number) {
+    return this.prisma.tarefa.findMany({
+      where: { tagId: id },
+    });
+  }
+
   async update(id: number, data: TagDTO) {
     return await this.prisma.tags.update({
       data,
@@ -27,6 +33,10 @@ export class TagService {
   }
 
   async delete(id) {
+    await this.prisma.tarefa.updateMany({
+      where: { tagId: id },
+      data: { tagId: null },
+    });
     return await this.prisma.tags.delete({
       where: {
         id,

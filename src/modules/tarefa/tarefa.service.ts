@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { TarefaDTO } from './tarefa.dto';
 import { PrismaService } from 'src/database/prisma.service';
+import { TarefaDTO } from './tarefa.dto';
 
 @Injectable()
 export class TarefaService {
@@ -17,6 +17,14 @@ export class TarefaService {
     return this.prisma.tarefa.findMany();
   }
 
+  async readAllCompleted() {
+    return this.prisma.tarefa.findMany({
+      where: {
+        realizado: true,
+      },
+    });
+  }
+
   async update(id: number, data: TarefaDTO) {
     return await this.prisma.tarefa.update({
       data,
@@ -30,6 +38,14 @@ export class TarefaService {
     return await this.prisma.tarefa.delete({
       where: {
         id,
+      },
+    });
+  }
+
+  async deleteAll() {
+    return await this.prisma.tarefa.deleteMany({
+      where: {
+        realizado: true,
       },
     });
   }
